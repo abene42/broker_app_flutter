@@ -10,7 +10,7 @@ class SearchPageController extends GetxController {
 
   /// Setts the value of formData state variable with the provided key and value
   void setFormDataValue(String key, dynamic value) {
-    formData.value[key.toLowerCase()] = value;
+    formData[key.toLowerCase()] = value;
     formData.refresh();
   }
 }

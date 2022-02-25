@@ -1,3 +1,4 @@
+import 'package:broker_app/controllers/form_controller.dart';
 import 'package:broker_app/controllers/homepage/homepage_controller.dart';
 import 'package:broker_app/widgets/custom_button.dart';
 import 'package:broker_app/widgets/custom_dropdown.dart';
@@ -16,11 +17,13 @@ class _AddDetailPageState extends State<AddDetailPage> {
   final _formKey = GlobalKey<FormState>();
 
   late final HomepageController _homepageController;
+  late final AddItemController _addItemController;
 
   @override
   initState() {
     super.initState();
     _homepageController = HomepageController();
+    _addItemController = Get.put(AddItemController());
   }
 
   @override
@@ -65,14 +68,16 @@ class _AddDetailPageState extends State<AddDetailPage> {
                               dropdownOptions: cities,
                               dropdownDescription:
                                   'City where the house is found in',
+                              formController: _addItemController,
                             ),
-                            Divider(
+                            const Divider(
                               color: Colors.transparent,
                               height: 10,
                             ),
                             CustomTextField(
                               textFieldTitle: 'Sub City',
                               textFieldDescription: 'The sub-city of the house',
+                              formController: _addItemController,
                             ),
                             Divider(
                               color: Colors.transparent,
@@ -82,6 +87,7 @@ class _AddDetailPageState extends State<AddDetailPage> {
                               textFieldTitle: 'Specific Area',
                               textFieldDescription:
                                   'The specific area name of the house',
+                              formController: _addItemController,
                             ),
                             Divider(
                               color: Colors.transparent,
@@ -91,6 +97,7 @@ class _AddDetailPageState extends State<AddDetailPage> {
                               textFieldTitle: 'Floors',
                               textFieldDescription:
                                   'The number of floors the house has',
+                              formController: _addItemController,
                             ),
                             Divider(
                               color: Colors.transparent,
@@ -100,6 +107,11 @@ class _AddDetailPageState extends State<AddDetailPage> {
                               textFieldTitle: 'Area',
                               textFieldDescription:
                                   'The area of the land where the house is built on',
+                              formController: _addItemController,
+                            ),
+                            Divider(
+                              color: Colors.transparent,
+                              height: 10,
                             ),
                           ],
                         ),

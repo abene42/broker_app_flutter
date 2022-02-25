@@ -1,10 +1,16 @@
+import 'package:broker_app/controllers/form_controller.dart';
+import 'package:broker_app/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String textFieldTitle;
   final String? textFieldDescription;
-  const CustomTextField(
-      {Key? key, required this.textFieldTitle, this.textFieldDescription})
+  final AddItemController formController;
+  CustomTextField(
+      {Key? key,
+      required this.textFieldTitle,
+      this.textFieldDescription,
+      required this.formController})
       : super(key: key);
 
   @override
@@ -16,7 +22,7 @@ class CustomTextField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              textFieldTitle,
+              HelperClass.capitalizeWords(textFieldTitle),
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
@@ -33,7 +39,7 @@ class CustomTextField extends StatelessWidget {
                 color: Color(0xff0884FF),
               ),
               onTap: () {
-                print("\x1B[33m $textFieldDescription \x1B[0m");
+                debugPrint("\x1B[33m $textFieldDescription \x1B[0m");
               },
             )
           ],
@@ -56,9 +62,14 @@ class CustomTextField extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: Color(0xff3E4E5E),
             ),
-            decoration: InputDecoration(
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
               border: InputBorder.none,
             ),
+            onChanged: (text) {
+              formController.formData[
+                  textFieldTitle.replaceAll(' ', '_').toLowerCase()] = text;
+            },
           ),
         ),
       ],

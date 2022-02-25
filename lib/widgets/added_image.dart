@@ -1,8 +1,16 @@
+import 'dart:io';
+
+import 'package:broker_app/controllers/form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddedImage extends StatelessWidget {
-  const AddedImage({Key? key}) : super(key: key);
+  final XFile photoFile;
+  final AddItemController _addItemController = Get.find();
+
+  AddedImage({Key? key, required this.photoFile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +33,22 @@ class AddedImage extends StatelessWidget {
           ),
         ],
       ),
-      child: GestureDetector(
-        child: SvgPicture.asset('assets/icons/remove_icon.svg'),
-        onTap: () => print("\x1B[33m Image Remove button clicked \x1B[0m"),
+      child: Stack(
+        children: [
+          Image.file(
+            File(photoFile.path),
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GestureDetector(
+              child: SvgPicture.asset('assets/icons/remove_icon.svg'),
+              onTap: () => _addItemController.selectedPhotos.remove(photoFile),
+            ),
+          )
+        ],
       ),
     );
   }

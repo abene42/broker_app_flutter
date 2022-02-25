@@ -41,5 +41,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+    <string>Needed to add photos of the subject into the system.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Needed to add photos from gallery functionality to the application.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Needed to add capturing photos functionality to the application.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>I don't need it. It is here just in case</string>
 </dict>
 </plist>

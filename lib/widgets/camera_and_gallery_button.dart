@@ -5,9 +5,13 @@ import 'package:get/get.dart';
 class CameraAndGalleryButton extends StatelessWidget {
   final String buttonText;
   final SvgPicture buttonIcon;
+  final VoidCallback? onButtonClick;
 
   const CameraAndGalleryButton(
-      {Key? key, required this.buttonText, required this.buttonIcon})
+      {Key? key,
+      required this.buttonText,
+      required this.buttonIcon,
+      this.onButtonClick})
       : super(key: key);
 
   @override
@@ -28,7 +32,7 @@ class CameraAndGalleryButton extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(25),
-        onTap: () => print("\x1B[33m Camera or Gallery button clicked \x1B[0m"),
+        onTap: onButtonClick,
         child: Stack(
           children: [
             Align(

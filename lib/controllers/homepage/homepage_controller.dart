@@ -38,7 +38,7 @@ class HomepageController extends GetxController {
   /// Fetch cities from firestore
   Future<Iterable<String>> fetchCities() async {
     CollectionReference citiesRef = firebaseInstance.collection('cities');
-    QuerySnapshot citiesSnapshot = await citiesRef.get();
+    QuerySnapshot citiesSnapshot = await citiesRef.orderBy('name').get();
     Iterable<String> citiesIterable =
         citiesSnapshot.docs.map((QueryDocumentSnapshot doc) => doc['name']);
     return citiesIterable.toList();
